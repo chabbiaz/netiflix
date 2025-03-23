@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersection Observer Example</title>
+    <style>
+        .hidden {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .element {
+            height: 100vh;
+            background-color: lightblue;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+    <div class="element hidden">Content 1</div>
+    <div class="element hidden">Content 2</div>
+    <div class="element hidden">Content 3</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const observerOptions = {
+                threshold: 0.3 // Trigger when 30% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Unobserve to trigger only once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+<!-- 
+
+Explications
+HTML: 
+Les éléments à observer ont la classe .hidden.
+
+CSS:
+.hidden : Définit l'opacité à 0 et la translation sur l'axe X à -100px, ce qui les place hors de la vue à gauche et les rend invisibles.
+.visible : Définit l'opacité à 1 et réinitialise la translation sur l'axe X, ce qui les ramène dans la vue.
+Les propriétés transition permettent un effet de transition en douceur pour les changements d'opacité et de transformation.
+
+JavaScript:
+Utilise l'Intersection Observer pour détecter quand les éléments avec la classe .hidden entrent dans le viewport et leur ajoute la classe .visible.
+Fonctionnement
+Initialisation : Les éléments commencent avec une opacité de 0 et sont déplacés de -100px sur l'axe X.
+Intersection Observer : Lorsque les éléments deviennent visibles dans le viewport, la classe .visible leur est ajoutée.
+Transition CSS : La transition se produit, changeant progressivement l'opacité à 1 et la position sur l'axe X à 0, créant ainsi un effet de fondu et de déplacement de gauche à droite.
+Ce code assurera que vos éléments apparaissent avec une transition en fondu et une animation de déplacement de gauche à droite lorsque vous faites défiler la page.
+
+c'est tout à fait possible de faire apparaître un élément lorsqu'il atteint la moitié du viewport. Pour cela, vous pouvez ajuster les options de l'Intersection Observer en modifiant le seuil (threshold). Un threshold de 0.5 signifie que l'élément doit être visible à 50% avant que l'intersection soit déclenchée.
+-->

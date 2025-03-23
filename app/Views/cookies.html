@@ -1,0 +1,112 @@
+<style>
+    /* Style for the cookie consent popup */
+    .cookie-consent {
+        display: none; /* Hidden by default */
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        background-color: #f1f1f1;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        z-index: 1000;
+    }
+    
+    .cookie-consent-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cookie-consent p {
+        margin: 0 0 10px;
+        text-align: center;
+    }
+    
+    .cookie-consent-buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .cookie-consent-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+        flex: 1;
+    }
+    
+    .cookie-consent-button:nth-child(2) {
+        background-color: #f44336;
+    }
+    
+    .cookie-consent-button:hover {
+        opacity: 0.8;
+    }
+    
+    </style>
+
+    <!-- Cookie Consent Popup -->
+<div id="cookieConsent" class="cookie-consent">
+    <div class="cookie-consent-content">
+        <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. En poursuivant votre navigation, vous acceptez notre politique de confidentialité.</p>
+        <div class="cookie-consent-buttons">
+            <button id="acceptCookies" class="cookie-consent-button">Accepter</button>
+            <button id="declineCookies" class="cookie-consent-button">Refuser</button>
+        </div>
+    </div>
+</div>
+<script>
+// Function to set a cookie
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+// Function to get a cookie
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// Function to check cookie consent
+function checkCookieConsent() {
+    var consent = getCookie("cookieConsent");
+    if (!consent) {
+        document.getElementById("cookieConsent").style.display = "block";
+    }
+}
+
+// Event listener for accepting cookies
+document.getElementById("acceptCookies").addEventListener("click", function() {
+    setCookie("cookieConsent", "accepted", 365);
+    document.getElementById("cookieConsent").style.display = "none";
+});
+
+// Event listener for declining cookies
+document.getElementById("declineCookies").addEventListener("click", function() {
+    setCookie("cookieConsent", "declined", 365);
+    document.getElementById("cookieConsent").style.display = "none";
+});
+
+// Check for cookie consent on page load
+document.addEventListener("DOMContentLoaded", function() {
+    checkCookieConsent();
+});
+</script>

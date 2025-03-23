@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;  /* Centre le contenu verticalement */
+        flex-grow: 1;  /* Prend l'espace disponible restant */
+    }
+
+    nav {
+        background-color: pink;
+        height: 50px;
+    }
+
+    .haut {
+        height: 200px;
+        display: flex;
+    }
+
+    .bleu {
+        background-color: blue;
+        flex: 1;
+    }
+
+    .rouge {
+        background-color: red;
+        flex: 1;
+    }
+
+    .bas {
+        height: 200px;
+        background-color: green;
+    }
+
+    /* .basbas{
+        height: 1000px;
+        background-color: purple;
+    } */
+
+    footer {
+        background-color: yellow;
+        height: 50px;
+    }
+</style>
+
+<body>
+    <nav>
+        <p>NAVBAR</p>
+    </nav>
+
+
+    <main>
+        <div class="haut">
+            <div class="bleu">
+                <p>CONTENU 1</p>
+            </div>
+            <div class="rouge">
+                <p>CONTENU 2</p>
+            </div>
+        </div>
+
+        <div class="bas">
+            <p>CONTENU 3</p>
+        </div>
+
+        <div class="basbas">
+        </div>
+    </main>
+
+    
+    <footer>
+        <p>FOOTER</p>
+    </footer>
+</body>
+
+</html>

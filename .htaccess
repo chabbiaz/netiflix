@@ -1,0 +1,20 @@
+# On active la réécriture d'url:
+RewriteEngine On
+
+# Exclure index.php de la redirection :
+# L'option [L] signifie "Last" (dernière règle à appliquer), ce qui indique à Apache d'arrêter le processus
+# de réécriture une fois cette règle atteinte
+#si la requête est pour index.php, la réécriture s'arrête ici et aucun traitement supplémentaire n'est effectué.
+RewriteRule ^index\.php$ - [L]
+
+# Ne pas rediriger les liens qui mènent vers index.php ou vers le dossier public lors
+# de la prochaine réécriture
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} !^/robots.txt
+
+# n'importe quel chemin (^(.*)$) qui n'a pas été intercepté par des règles précédentes, sera
+# Rediriger vers index.php avec la partie correspondante de l'URL passée comme paramètre route (?route=$1)
+# L'option QSA permet de conserver les paramètres de requête existants (?key=value) lors de la redirection vers index.php.
+RewriteRule ^(.*)$ /index.php?route=$1 [L,QSA]
+
