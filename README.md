@@ -3,6 +3,11 @@
 La réutilisation de se projet à but lucratif est strictement interdite.
 
 
+
+LE SITE EN LIGNE:
+[CLIQUEZ ICI POUR LE VOIR EN LIGNE](https://zcproduction.shop)
+
+
 **Netiflix** est un projet web développé dans le cadre de notre formation, avec l’ambition de devenir la **principale plateforme en France pour la vente de DVD de films**.
 
 Notre objectif est de **promouvoir la richesse et la diversité du cinéma**, afin de satisfaire les amateurs de tous horizons et d’éveiller la curiosité des néophytes.  
