@@ -1,6 +1,6 @@
 <?php
 // require __DIR__ . "vendor/autoload.php";
-// $stripe_secret_key = "sk_test_vvbNSLYqyz0wlCvXC6x72wS600WBeoH8l6";
+// $stripe_secret_key = "STRIPE_KEY";
 // \Stripe\Stripe::setApiKey($stripe_secret_key);
 // $checkout_session = \Stripe\Checkout\Session::create([
 //     'payment_method_types' => ['card'],
